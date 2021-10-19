@@ -7,6 +7,37 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+# Packages
+library(tidyverse)
+library(palmerpenguins)
+library(plotly)
+library(DT)
+
+# install.packages("package_name")
 ```
 
-ii
+Scatterplot of penguin flipper_length_mm (x-axis) vs body_mass_g (y-axis) with points having different color based on species
+
+# when u want to change something that depends on variable,color for species, must use aes()
+# store entire gg plot to name
+# if i want it to show up in knitted document, we have to call it back
+# penguins_graph
+
+```{r}
+penguins_graph <- ggplot(data = penguins, 
+       aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species))
+
+# Make interactive graph
+
+ggplotly(penguins_graph)
+  
+```
+
+# create searchable and filterable data table
+
+```{r}
+datatable(penguins)
+```
+
